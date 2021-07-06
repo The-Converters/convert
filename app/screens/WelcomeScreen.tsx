@@ -1,14 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity} from 'react-native'
+import { useHistory } from 'react-router-native';
 
-interface Props {
-  title: string;
-}
-
-const WelcomeScreen: React.FC<Props> = ({ title }) => {
+const WelcomeScreen = () => {
+  const history = useHistory()
   return (
     <View>
-      <Text>{title}</Text>
+      <Text>WTF</Text>
+      <TouchableOpacity onPress = {()=>history.push('/measure')}><Text>Do Something</Text></TouchableOpacity>
     </View>
   )
 }

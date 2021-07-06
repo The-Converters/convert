@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import Keypad from '../components/Keypad'
 
 interface Props {
   measurement: number
@@ -7,15 +8,27 @@ interface Props {
 
 //left code here for reference feel free to delete!
 
-function MeasureScreen({ measurement }: Props) {
+function MeasureScreen({ measurement=5 }: Props) {
   return (
    <SafeAreaView>
-    <View>
+    <View style={styles.container} >
       <Text>{measurement}</Text>
+      <View style={styles.keypadOuter} >
+        <Keypad />
+      </View>
     </View>
    </SafeAreaView>   
     
   )
 }
+
+const styles = StyleSheet.create({
+  keypadOuter: {
+   
+  },
+  container: {
+
+  }
+})
 
 export default MeasureScreen
