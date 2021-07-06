@@ -1,10 +1,14 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const WelcomeScreen = () => {
+interface Props {
+  title: string;
+}
+
+const WelcomeScreen: React.FC<Props> = ({ title }) => {
   return (
     <View>
-      <Text></Text>
+      <Text>{title}</Text>
     </View>
   )
 }
