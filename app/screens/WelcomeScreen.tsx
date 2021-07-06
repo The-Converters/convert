@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity} from 'react-native'
-import { useHistory } from 'react-router-native';
+import { useHistory } from 'react-router-native'
 
 const WelcomeScreen = () => {
   const history = useHistory()
