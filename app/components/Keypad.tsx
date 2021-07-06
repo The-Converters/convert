@@ -9,39 +9,38 @@ function Keypad() {
   return (
     <SafeAreaView>
       <View style={styles.keypad}>
-        <View style={styles.row}>
-          <TouchableOpacity onPress={()=>handleTouch(7)}><Text style={styles.btn}>7
+        <View style={styles.column}>
+          <TouchableOpacity onPress={()=>handleTouch('7')}><Text style={styles.btn}>7
             </Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch(8)}><Text style={styles.btn}>8
+            <TouchableOpacity onPress={()=>handleTouch('4')}><Text style={styles.btn}>4
             </Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch(9)}><Text style={styles.btn}>9
+            <TouchableOpacity onPress={()=>handleTouch('1')}><Text style={styles.btn}>1
             </Text></TouchableOpacity>
-        </View>
-        < View style={styles.row}>
-          <TouchableOpacity onPress={()=>handleTouch(4)}><Text style={styles.btn}>4
-            </Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch(5)}><Text style={styles.btn}>5
-            </Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch(6)}><Text style={styles.btn}>6
+            <TouchableOpacity onPress={()=>handleTouch('.')}><Text style={styles.btn}>.
             </Text></TouchableOpacity>
         </View>
-        <View style={styles.row}>
-          <TouchableOpacity onPress={()=>handleTouch(1)}><Text style={styles.btn}>1
+        < View style={styles.column}>
+        <TouchableOpacity onPress={()=>handleTouch('8')}><Text style={styles.btn}>8
             </Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch(2)}><Text style={styles.btn}>2
+          <TouchableOpacity onPress={()=>handleTouch('5')}><Text style={styles.btn}>5
             </Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch(3)}><Text style={styles.btn}>3
+            <TouchableOpacity onPress={()=>handleTouch('2')}><Text style={styles.btn}>2
             </Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>handleTouch('0')}><Text style={styles.btn}>0
+            </Text></TouchableOpacity>
+          
         </View>
-        <View style={styles.row}>
-          <TouchableOpacity onPress={()=>handleTouch("neg")}><Text style={styles.btn}>
+        <View style={styles.column}>
+        <TouchableOpacity onPress={()=>handleTouch('9')}><Text style={styles.btn}>9
+            </Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>handleTouch('6')}><Text style={styles.btn}>6
+            </Text></TouchableOpacity>
+          <TouchableOpacity onPress={()=>handleTouch('3')}><Text style={styles.btn}>3
+            </Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>handleTouch("neg")}><Text style={styles.btn}>
           +/-</Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch(0)}><Text style={styles.btn}>0
-            </Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>handleTouch('.')}><Text style={styles.btn}>.
-            </Text></TouchableOpacity>
         </View>
-        <View style={styles.row}>
+        <View style={styles.column}>
           <TouchableOpacity onPress={()=>handleTouch("<")}><Text style={styles.btn}>&lt;
             </Text></TouchableOpacity>
           <TouchableOpacity onPress={()=>handleTouch("clr")}><Text style={styles.btn}>clr
@@ -56,17 +55,20 @@ function Keypad() {
 
 const styles = StyleSheet.create({
   keypad:{
-    width: '100%',
-    height: '55%',
+    width: '90%',
+    height: '70%',
     display:'flex',
+    flexDirection: 'row',
     justifyContent: 'space-evenly',
-    alignItems: 'stretch'
+    backgroundColor: '#1a66b5ff'
   },
-  row: {
+  column: {
     display:'flex',
-    flexDirection:'row',
+    flexDirection:"column",
     justifyContent: 'space-evenly',
-    width: '100%',
+    alignItems: 'center',
+    width: '20%',
+    
     
   },
   btn: {
