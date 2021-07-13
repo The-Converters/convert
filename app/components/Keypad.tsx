@@ -60,10 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     display: 'flex',
-    alignSelf: 'center'
-    // padding: 10
-    
-    
+    alignSelf: 'center'    
   }
 })
 export default Keypad
