@@ -42,14 +42,15 @@ const styles = StyleSheet.create({
   },
   row: {
     flexWrap: "wrap",
-    flexDirection: "row"
+    flexDirection: "row",
+    height: '25%'
   },
   btnOuter: {
     borderColor: 'white',
     borderWidth: 1,
     borderStyle: 'solid',
     width: '25%',
-    height: '25%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
