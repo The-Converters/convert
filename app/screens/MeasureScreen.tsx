@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
    fontSize: 50, 
   },
   keypadOuter: {
-   flex: 2,
+   flex: 1.5,
    width: '100%',
    alignSelf: 'center'
   },
