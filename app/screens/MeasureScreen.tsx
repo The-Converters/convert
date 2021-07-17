@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import Keypad from '../components/Keypad'
+import { fahrenheitToCelsius } from '../utils/temp';
 
 interface Props {
   measurement: number
@@ -11,17 +12,35 @@ interface Props {
 function MeasureScreen({ measurement=5 }: Props) {
 
 const handleTouch = (keyPress: string): void => {
-  console.log(keyPress)
+  switch(keyPress) {
+    case '<' :
+      setInput(input.slice(0,-1))
+        break;
+    case '+/-':
+      setInput(input[0] === '-' ? input.slice(1) : '-'+input)
+        break;
+    case 'clr':
+      setInput('0')
+      break;
+    default:
+      setInput(input+keyPress)    
+  } 
 }
+
+const [input, setInput] = useState('0')
+const [output, setOutput] = useState('0')
+useEffect(()=>{
+  setOutput(fahrenheitToCelsius(input))
+},[input])
 const keys = ["7", "8", "9", "<", "4", "5", "6", "clr", "1", "2", "3", "go", ".", "0", "+/-", "home" ]
   return (
    <SafeAreaView>
     <View style={styles.container} >
       <View style={styles.input}>
-        <Text style={styles.inputText} >from</Text>
+        <Text style={styles.inputText} >{input}</Text>
       </View>
       <View style={styles.input} >
-        <Text style={styles.inputText} >to</Text>
+        <Text style={styles.inputText} >{output}</Text>
       </View>
 
       <Text>{measurement}</Text>
