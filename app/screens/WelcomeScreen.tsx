@@ -7,7 +7,7 @@ const WelcomeScreen = () => {
   return (
     <View>
       <Text>WTF</Text>
-      <TouchableOpacity onPress = {()=>history.push('/measure')}><Text>Do Something</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {()=>history.push('/convert')}><Text>Do Something</Text></TouchableOpacity>
     </View>
   )
 }

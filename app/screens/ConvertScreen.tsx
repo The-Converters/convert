@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { useHistory } from 'react-router-native'
 import Keypad from '../components/Keypad'
 import { fahrenheitToCelsius } from '../utils/temp';
 
@@ -9,10 +10,19 @@ interface Props {
 
 //left code here for reference feel free to delete!
 
-function MeasureScreen({ measurement=5 }: Props) {
-
-const handleTouch = (keyPress: string): void => {
+function ConvertScreen({ measurement=5 }: Props) {
+  const history = useHistory()
+  const [input, setInput] = useState('0')
+  const [output, setOutput] = useState('0')
+  
+  const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
+    case 'menu':
+      history.push('/')
+      break;
+    case 'home':
+        history.push('/')
+        break;
     case '<' :
       setInput(input.slice(0,-1))
         break;
@@ -23,18 +33,18 @@ const handleTouch = (keyPress: string): void => {
       setInput('0')
       break;
     default:
-      setInput(input+keyPress)    
-  } 
-}
+      if(input=== '0') setInput(keyPress)
+      else if(input === '-0') setInput('-' + keyPress)
+      else setInput(input + keyPress)
+    }
+  }
 
-const [input, setInput] = useState('0')
-const [output, setOutput] = useState('0')
 useEffect(()=>{
   setOutput(fahrenheitToCelsius(input))
 },[input])
-const keys = ["7", "8", "9", "<", "4", "5", "6", "clr", "1", "2", "3", "go", ".", "0", "+/-", "home" ]
+const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
   return (
-   <SafeAreaView>
+    <SafeAreaView>
     <View style={styles.container} >
       <View style={styles.input}>
         <Text style={styles.inputText} >{input}</Text>
@@ -80,4 +90,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default MeasureScreen
+export default ConvertScreen
