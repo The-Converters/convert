@@ -9,6 +9,11 @@ interface Props {
 //left code here for reference feel free to delete!
 
 function MeasureScreen({ measurement=5 }: Props) {
+
+const handleTouch = (keyPress: string): void => {
+  console.log(keyPress)
+}
+const keys = ["7", "8", "9", "<", "4", "5", "6", "clr", "1", "2", "3", "go", ".", "0", "+/-", "home" ]
   return (
    <SafeAreaView>
     <View style={styles.container} >
@@ -21,7 +26,10 @@ function MeasureScreen({ measurement=5 }: Props) {
 
       <Text>{measurement}</Text>
       <View style={styles.keypadOuter} >
-        <Keypad />
+        <Keypad 
+        keys = {keys}
+        handleTouch ={
+           handleTouch }/>
       </View>
     </View>
    </SafeAreaView>   
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
    fontSize: 50, 
   },
   keypadOuter: {
-   flex: 2,
+   flex: 1.5,
    width: '100%',
    alignSelf: 'center'
   },
