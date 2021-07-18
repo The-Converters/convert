@@ -1,10 +1,17 @@
 import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import { 
+  View, 
+  Text, 
+  SafeAreaView, 
+  StyleSheet, 
+  TouchableOpacity 
+} from 'react-native';
 
 
-const handleTouch = keyPress => {
+const handleTouch = (keyPress: string): void => {
   console.log(keyPress)
 }
+
 function Keypad() {
   return (
     <SafeAreaView>
