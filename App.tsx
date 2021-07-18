@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Switch, Route } from 'react-router-native';
-import MeasureScreen from './app/screens/MeasureScreen';
+import ConvertScreen from './app/screens/ConvertScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 
 
@@ -14,7 +14,7 @@ export default function App()  {
       <NativeRouter >
         <Switch >
         <Route exact path = '/' component={WelcomeScreen}></Route>
-        <Route exact path = '/measure' component={MeasureScreen}></Route>
+        <Route exact path = '/convert' component={ConvertScreen}></Route>
         </Switch>
         
       </NativeRouter>

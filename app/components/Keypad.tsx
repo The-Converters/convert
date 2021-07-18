@@ -13,7 +13,6 @@ interface Props {
 }
 
 const Keypad: React.FC<Props> = ({keys, handleTouch}) => {
-  console.log(keys)
   const keyTouchElements = keys.map((key, index) => (
     <TouchableOpacity
           key={index} 
