@@ -14,7 +14,10 @@ export default function App()  {
       <NativeRouter >
         <Switch >
         <Route exact path = '/' component={WelcomeScreen}></Route>
-        <Route exact path = '/convert' component={ConvertScreen}></Route>
+        <Route 
+          exact path = '/convert/:conversion' 
+          component={ConvertScreen}>
+        </Route>
         </Switch>
         
       </NativeRouter>

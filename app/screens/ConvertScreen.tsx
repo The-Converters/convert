@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import { useHistory } from 'react-router-native'
+import { useHistory, useParams } from 'react-router-native'
 import Keypad from '../components/Keypad'
-import { fahrenheitToCelsius } from '../utils/temp';
-
+import { fahrenheitToCelsius } from '../utils/temperature';
+import { measurements } from '../config/options';
+import OptionsList from '../components/OptionsList';
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
-  const [input, setInput] = useState<string>('0')
-  const [output, setOutput] = useState<string>('0')
+  const [input, setInput] = useState<string>('')
+  const [output, setOutput] = useState<string>('')
   const [showFromModal, setShowFromModal] = useState<boolean>(false)
   const [showToModal, setShowToModal] = useState<boolean>(false)
-
+  const [convertFrom, setConvertFrom] = useState<string>('')
+  const [convertTo, setConvertTo] = useState<string>('')
   
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
@@ -28,7 +30,7 @@ const ConvertScreen: React.FC = () => {
       setInput(input[0] === '-' ? input.slice(1) : '-'+input)
         break;
     case 'clr':
-      setInput('0')
+      setInput('')
       break;
     default:
       if(input=== '0') setInput(keyPress)
@@ -37,10 +39,18 @@ const ConvertScreen: React.FC = () => {
     }
   }
 
-useEffect(()=>{
-  setOutput(fahrenheitToCelsius(input))
-},[input])
-const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+  useEffect(()=>{
+    if(!input) setOutput('')
+    if(input) setOutput(fahrenheitToCelsius(input))
+    if(convertFrom === convertTo) setOutput(input)
+    console.log(convertFrom, convertTo)
+  },[input, convertFrom, convertTo])
+
+  const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+
+  const { conversion } = useParams<{ conversion: string }>()
+  const optionOption: string[] = measurements[conversion]
+  
   return (
     <SafeAreaView>
     <View style={styles.container} >
@@ -53,27 +63,18 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         </TouchableOpacity>
       </View>
     {showFromModal &&
-      <Modal animationType={'fade'} transparent={true}>
-        <View style={styles.modal}>
-          <TouchableOpacity 
-            onPress={() => setShowFromModal(false)} 
-            style={styles.option}
-          >
-            <Text>Fahrenheit</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowFromModal(false)} 
-            style={styles.option}
-          >
-            <Text>Celsius</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowFromModal(false)} 
-            style={styles.option}
-          >
-            <Text>Kelvin</Text>
-          </TouchableOpacity>
-        </View>
+      <Modal 
+        animationType={'fade'} 
+        transparent={true}
+      >
+        <OptionsList 
+          options={optionOption}
+          handler={(option: string) => {
+            setConvertFrom(option)
+            setShowFromModal(false)
+            
+          }}
+        />
       </Modal>
     }
       <View style={styles.input} >
@@ -81,31 +82,23 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         <TouchableOpacity 
           onPress={() => setShowToModal(true)} 
         >
-          <Text style={styles.modalOpen} >▽</Text>
+          <Text style={styles.modalOpen}>▽</Text>
         </TouchableOpacity>
       </View>
     {showToModal &&
-      <Modal animationType={'fade'} transparent={true}>
-        <View style={[styles.modal, styles.modalB]} >
-          <TouchableOpacity 
-            onPress={() => setShowToModal(false)} 
-            style={styles.option}
-          >
-            <Text>Fahrenheit</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowToModal(false)} 
-            style={styles.option}
-          >
-            <Text>Celsius</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowToModal(false)} 
-            style={styles.option}
-          >
-            <Text>Kelvin</Text>
-          </TouchableOpacity>
-        </View>
+      <Modal 
+        animationType={'fade'} 
+        transparent={true}
+      >
+        <OptionsList 
+          options={optionOption}
+          handler={(option: string) => {
+            setConvertTo(option)
+            setShowToModal(false)
+            
+          }}
+          isModalB
+        />
       </Modal>
     }
 
@@ -154,34 +147,6 @@ const styles = StyleSheet.create({
    alignSelf: 'center',
    marginTop: 40
   },
-  modal: {
-    position: 'absolute',
-    top: 40,
-    right: 30,
-    width: '30%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 7,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    borderColor: 'darkgrey',
-    borderWidth: 1,
-    borderRadius: 7
-  },
-  modalB: {
-    top: 160
-  },
-  option: {
-    margin: 3
-  }
-  
 })
 
 export default ConvertScreen
