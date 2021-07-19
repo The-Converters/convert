@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Animated, FlatList, Modal } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { useHistory } from 'react-router-native'
 import Keypad from '../components/Keypad'
 import { fahrenheitToCelsius } from '../utils/temp';
 
-
-
-//left code here for reference feel free to delete!
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
@@ -14,9 +11,6 @@ const ConvertScreen: React.FC = () => {
   const [output, setOutput] = useState<string>('0')
   const [showFromModal, setShowFromModal] = useState<boolean>(false)
   const [showToModal, setShowToModal] = useState<boolean>(false)
-
-  
-
 
   
   const handleTouch = (keyPress: string): void => {
@@ -54,8 +48,8 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         <Text style={styles.inputText} >{input}</Text>
         <TouchableOpacity 
           onPress={() => setShowFromModal(true)} 
-          style={styles.modalOpen}>
-          <Text>▽</Text>
+        >
+          <Text style={styles.modalOpen}>▽</Text>
         </TouchableOpacity>
       </View>
     {showFromModal &&
@@ -86,8 +80,8 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         <Text style={styles.inputText} >{output}</Text>
         <TouchableOpacity 
           onPress={() => setShowToModal(true)} 
-          style={styles.modalOpen}>
-          <Text>▽</Text>
+        >
+          <Text style={styles.modalOpen} >▽</Text>
         </TouchableOpacity>
       </View>
     {showToModal &&
@@ -152,7 +146,7 @@ const styles = StyleSheet.create({
     fontSize: 50, 
   },
   modalOpen: {
-
+    fontSize: 20
   },
   keypadOuter: {
    flex: 1.5,
@@ -176,7 +170,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
+    borderColor: 'darkgrey',
+    borderWidth: 1,
+    borderRadius: 7
   },
   modalB: {
     top: 160
