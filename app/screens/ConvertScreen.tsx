@@ -3,7 +3,8 @@ import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Modal } from 'r
 import { useHistory } from 'react-router-native'
 import Keypad from '../components/Keypad'
 import { fahrenheitToCelsius } from '../utils/temp';
-
+import options from '../config/options';
+import OptionsList from '../components/OptionsList';
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
@@ -41,6 +42,10 @@ useEffect(()=>{
   setOutput(fahrenheitToCelsius(input))
 },[input])
 const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+
+  const fromParams = 'temp'
+  const optionOption: string[] = options[fromParams]
+  
   return (
     <SafeAreaView>
     <View style={styles.container} >
@@ -53,27 +58,14 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         </TouchableOpacity>
       </View>
     {showFromModal &&
-      <Modal animationType={'fade'} transparent={true}>
-        <View style={styles.modal}>
-          <TouchableOpacity 
-            onPress={() => setShowFromModal(false)} 
-            style={styles.option}
-          >
-            <Text>Fahrenheit</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowFromModal(false)} 
-            style={styles.option}
-          >
-            <Text>Celsius</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowFromModal(false)} 
-            style={styles.option}
-          >
-            <Text>Kelvin</Text>
-          </TouchableOpacity>
-        </View>
+      <Modal 
+        animationType={'fade'} 
+        transparent={true}
+      >
+        <OptionsList 
+          options={optionOption}
+          handler={() => setShowFromModal(false)}
+        />
       </Modal>
     }
       <View style={styles.input} >
@@ -81,31 +73,19 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         <TouchableOpacity 
           onPress={() => setShowToModal(true)} 
         >
-          <Text style={styles.modalOpen} >▽</Text>
+          <Text style={styles.modalOpen}>▽</Text>
         </TouchableOpacity>
       </View>
     {showToModal &&
-      <Modal animationType={'fade'} transparent={true}>
-        <View style={[styles.modal, styles.modalB]} >
-          <TouchableOpacity 
-            onPress={() => setShowToModal(false)} 
-            style={styles.option}
-          >
-            <Text>Fahrenheit</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowToModal(false)} 
-            style={styles.option}
-          >
-            <Text>Celsius</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => setShowToModal(false)} 
-            style={styles.option}
-          >
-            <Text>Kelvin</Text>
-          </TouchableOpacity>
-        </View>
+      <Modal 
+        animationType={'fade'} 
+        transparent={true}
+      >
+        <OptionsList 
+          options={optionOption}
+          handler={() => setShowToModal(false)}
+          isModalB
+        />
       </Modal>
     }
 
@@ -154,34 +134,6 @@ const styles = StyleSheet.create({
    alignSelf: 'center',
    marginTop: 40
   },
-  modal: {
-    position: 'absolute',
-    top: 40,
-    right: 30,
-    width: '30%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 7,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    borderColor: 'darkgrey',
-    borderWidth: 1,
-    borderRadius: 7
-  },
-  modalB: {
-    top: 160
-  },
-  option: {
-    margin: 3
-  }
-  
 })
 
 export default ConvertScreen
