@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Animated, FlatList, Modal } from 'react-native';
 import { useHistory } from 'react-router-native'
 import Keypad from '../components/Keypad'
 import { fahrenheitToCelsius } from '../utils/temp';
@@ -8,12 +8,16 @@ import { fahrenheitToCelsius } from '../utils/temp';
 
 //left code here for reference feel free to delete!
 
-const ConvertScreen = () => {
+const ConvertScreen: React.FC = () => {
   const history = useHistory()
   const [input, setInput] = useState<string>('0')
   const [output, setOutput] = useState<string>('0')
   const [showFromModal, setShowFromModal] = useState<boolean>(false)
   const [showToModal, setShowToModal] = useState<boolean>(false)
+
+  
+
+
   
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
@@ -55,17 +59,28 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         </TouchableOpacity>
       </View>
     {showFromModal &&
-      <View style={styles.modal} >
-        <TouchableOpacity onPress={() => setShowFromModal(false)} >
-          <Text>Fahrenheit</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setShowFromModal(false)} >
-          <Text>Celsius</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setShowFromModal(false)} >
-          <Text>Kelvin</Text>
-        </TouchableOpacity>
-      </View>
+      <Modal animationType={'fade'} transparent={true}>
+        <View style={styles.modal}>
+          <TouchableOpacity 
+            onPress={() => setShowFromModal(false)} 
+            style={styles.option}
+          >
+            <Text>Fahrenheit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => setShowFromModal(false)} 
+            style={styles.option}
+          >
+            <Text>Celsius</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => setShowFromModal(false)} 
+            style={styles.option}
+          >
+            <Text>Kelvin</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     }
       <View style={styles.input} >
         <Text style={styles.inputText} >{output}</Text>
@@ -76,17 +91,28 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
         </TouchableOpacity>
       </View>
     {showToModal &&
-      <View style={[styles.modal, styles.modalB]} >
-        <TouchableOpacity onPress={() => setShowToModal(false)} >
-          <Text>Fahrenheit</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setShowToModal(false)} >
-          <Text>Celsius</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setShowToModal(false)} >
-          <Text>Kelvin</Text>
-        </TouchableOpacity>
-      </View>
+      <Modal animationType={'fade'} transparent={true}>
+        <View style={[styles.modal, styles.modalB]} >
+          <TouchableOpacity 
+            onPress={() => setShowToModal(false)} 
+            style={styles.option}
+          >
+            <Text>Fahrenheit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => setShowToModal(false)} 
+            style={styles.option}
+          >
+            <Text>Celsius</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => setShowToModal(false)} 
+            style={styles.option}
+          >
+            <Text>Kelvin</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     }
 
       <View style={styles.keypadOuter} >
@@ -138,13 +164,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     right: 30,
-    width: '20%',
+    width: '30%',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     backgroundColor: 'white',
+    padding: 7,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
   },
   modalB: {
     top: 160
+  },
+  option: {
+    margin: 3
   }
   
 })
