@@ -8,7 +8,7 @@ import {
 
 interface Props {
   options: string[],
-  handler: () => void,
+  handler: (option: string) => void,
   isModalB?: boolean
 }
 
@@ -18,7 +18,7 @@ const OptionsList: React.FC<Props> = ({
 
   const optionItems = options.map(option => (
     <TouchableOpacity 
-      onPress={handler} 
+      onPress={() => handler(option)} 
       style={styles.option}
       key={option}
     >

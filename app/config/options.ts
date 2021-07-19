@@ -1,24 +1,8 @@
-interface OptionItemA {
+interface OptionItem {
   [key: string]: string[];
 }
 
-// interface OptionItemB {
-//   name: string,
-//   options: string[]
-// }
-
-export default  {
+export const measurements: OptionItem =  {
   temp: ['fahrenheit', 'celsius', 'kelvin'],
-  distance: ['miles', 'kilometers']
+  distance: ['miles', 'kilometers', 'furlongs', 'yards', 'feet']
 }
-
-// const options: OptionItemB[] = [
-//   {
-//     name: 'temp',
-//     options: ['fahrenheit', 'celsius', 'kelvin']
-//   },
-//   {
-//     name: 'distance',
-//     options: ['miles', 'kilometers']
-//   }
-// ]

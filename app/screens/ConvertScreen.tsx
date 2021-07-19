@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import { useHistory } from 'react-router-native'
+import { useHistory, useParams } from 'react-router-native'
 import Keypad from '../components/Keypad'
-import { fahrenheitToCelsius } from '../utils/temp';
-import options from '../config/options';
+import { fahrenheitToCelsius } from '../utils/temperature';
+import { measurements } from '../config/options';
 import OptionsList from '../components/OptionsList';
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
-  const [input, setInput] = useState<string>('0')
-  const [output, setOutput] = useState<string>('0')
+  const [input, setInput] = useState<string>('')
+  const [output, setOutput] = useState<string>('')
   const [showFromModal, setShowFromModal] = useState<boolean>(false)
   const [showToModal, setShowToModal] = useState<boolean>(false)
-
+  const [convertFrom, setConvertFrom] = useState<string>('')
+  const [convertTo, setConvertTo] = useState<string>('')
   
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
@@ -29,7 +30,7 @@ const ConvertScreen: React.FC = () => {
       setInput(input[0] === '-' ? input.slice(1) : '-'+input)
         break;
     case 'clr':
-      setInput('0')
+      setInput('')
       break;
     default:
       if(input=== '0') setInput(keyPress)
@@ -38,13 +39,17 @@ const ConvertScreen: React.FC = () => {
     }
   }
 
-useEffect(()=>{
-  setOutput(fahrenheitToCelsius(input))
-},[input])
-const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+  useEffect(()=>{
+    if(!input) setOutput('')
+    if(input) setOutput(fahrenheitToCelsius(input))
+    if(convertFrom === convertTo) setOutput(input)
+    console.log(convertFrom, convertTo)
+  },[input, convertFrom, convertTo])
 
-  const fromParams = 'temp'
-  const optionOption: string[] = options[fromParams]
+  const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+
+  const { conversion } = useParams<{ conversion: string }>()
+  const optionOption: string[] = measurements[conversion]
   
   return (
     <SafeAreaView>
@@ -64,7 +69,11 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
       >
         <OptionsList 
           options={optionOption}
-          handler={() => setShowFromModal(false)}
+          handler={(option: string) => {
+            setConvertFrom(option)
+            setShowFromModal(false)
+            
+          }}
         />
       </Modal>
     }
@@ -83,7 +92,11 @@ const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", "
       >
         <OptionsList 
           options={optionOption}
-          handler={() => setShowToModal(false)}
+          handler={(option: string) => {
+            setConvertTo(option)
+            setShowToModal(false)
+            
+          }}
           isModalB
         />
       </Modal>
