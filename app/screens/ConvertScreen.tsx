@@ -5,6 +5,7 @@ import Keypad from '../components/Keypad'
 import { fahrenheitToCelsius } from '../utils/temperature';
 import { measurements } from '../config/options';
 import OptionsList from '../components/OptionsList';
+import { convert } from '../utils/conversion'
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
@@ -14,6 +15,7 @@ const ConvertScreen: React.FC = () => {
   const [showToModal, setShowToModal] = useState<boolean>(false)
   const [convertFrom, setConvertFrom] = useState<string>('')
   const [convertTo, setConvertTo] = useState<string>('')
+  const { conversion } = useParams<{ conversion: string }>()
   
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
@@ -41,14 +43,14 @@ const ConvertScreen: React.FC = () => {
 
   useEffect(()=>{
     if(!input) setOutput('')
-    if(input) setOutput(fahrenheitToCelsius(input))
+    if(input) setOutput(convert(conversion, convertFrom, convertTo, input))
     if(convertFrom === convertTo) setOutput(input)
     console.log(convertFrom, convertTo)
   },[input, convertFrom, convertTo])
 
   const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
 
-  const { conversion } = useParams<{ conversion: string }>()
+  
   const optionOption: string[] = measurements[conversion]
   
   return (
@@ -105,12 +107,10 @@ const ConvertScreen: React.FC = () => {
       <View style={styles.keypadOuter} >
         <Keypad 
         keys = {keys}
-        handleTouch ={
-           handleTouch }/>
+        handleTouch ={handleTouch }/>
       </View>
     </View>
-   </SafeAreaView>   
-    
+    </SafeAreaView> 
   )
 }
 
