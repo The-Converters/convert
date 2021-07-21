@@ -2,13 +2,14 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import { useHistory } from 'react-router-native'
 import Keypad from '../components/Keypad'
+import { units } from '../config/conversions'
 
 
 const WelcomeScreen = () => {
   
   const history = useHistory()
 
-  const keys = ['temp', 'distance']
+  const keys = Object.keys(units)
 
   const handleTouch = (keyPress: string) => {
     console.log(keyPress)
