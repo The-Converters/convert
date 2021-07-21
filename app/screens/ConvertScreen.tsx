@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { useHistory, useParams } from 'react-router-native'
 import Keypad from '../components/Keypad'
-import { fahrenheitToCelsius } from '../utils/temperature';
-import { measurements } from '../config/options';
 import OptionsList from '../components/OptionsList';
-import { convert } from '../utils/conversion'
+import { convert } from '../utils/conversion';
+import { units } from '../config/conversions';
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
@@ -17,6 +16,8 @@ const ConvertScreen: React.FC = () => {
   const [convertTo, setConvertTo] = useState<string>('')
   const { conversion } = useParams<{ conversion: string }>()
   
+  const optionsArr: string[] = Object.keys(units[conversion])
+
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
     case 'menu':
@@ -51,8 +52,6 @@ const ConvertScreen: React.FC = () => {
   const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
 
   
-  const optionOption: string[] = measurements[conversion]
-  
   return (
     <SafeAreaView>
     <View style={styles.container} >
@@ -70,7 +69,7 @@ const ConvertScreen: React.FC = () => {
         transparent={true}
       >
         <OptionsList 
-          options={optionOption}
+          options={optionsArr}
           handler={(option: string) => {
             setConvertFrom(option)
             setShowFromModal(false)
@@ -93,7 +92,7 @@ const ConvertScreen: React.FC = () => {
         transparent={true}
       >
         <OptionsList 
-          options={optionOption}
+          options={optionsArr}
           handler={(option: string) => {
             setConvertTo(option)
             setShowToModal(false)
