@@ -20,7 +20,7 @@ export const units: Units = {
     },
     fahrenheit: {
       toSI: (degrees: number) : number => (degrees+459.67)*(5/9),
-      fromSI: (degrees: number) : number => degrees*(9/5)+459.67,
+      fromSI: (degrees: number) : number => degrees*(9/5)-459.67,
     },
     celsius: {
       toSI: (degrees: number) : number => degrees + 273.15,
