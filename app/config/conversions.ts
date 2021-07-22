@@ -29,7 +29,7 @@ export const units: Units = {
   },
   distance: {
     meters: {
-      toSI: (meters: number)=> meters,
+      toSI: (meters: number) => meters,
       fromSI: (meters: number) => meters
     },
     miles:{
