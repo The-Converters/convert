@@ -33,8 +33,8 @@ export const units: Units = {
       fromSI: (meters: number) => meters
     },
     miles:{
-      toSI: (miles: number) => miles * 1609.34,
-      fromSI: (miles: number) => miles * 1609.34
+      toSI: (miles: number) => miles * 1609.344,
+      fromSI: (miles: number) => miles / 1609.344
     },
     kilometers:{
       toSI: (km: number) => km * 1000,
@@ -45,8 +45,8 @@ export const units: Units = {
       fromSI: (furlongs: number) => furlongs / 201.168
     },
     yards:{
-      toSI: (yards: number) => yards / 1.09361,
-      fromSI: (yards: number) => yards * 1.09361
+      toSI: (yards: number) => yards / 1.09361329834,
+      fromSI: (yards: number) => yards * 1.09361329834
     },
     feet:{
       toSI: (feet: number) => feet / 3.28084,
@@ -74,16 +74,16 @@ export const units: Units = {
       fromSI: (gals: number) => gals / 3.78541
     },
     quarts: {
-      toSI: (qts: number) => qts * 1.057,
-      fromSI: (qts: number) => qts / 1.057
+      toSI: (qts: number) => qts / 1.05669,
+      fromSI: (qts: number) => qts * 1.05669
     },
     cups: {
-      toSI: (cps: number) => cps * 4.227,
-      fromSI: (cps: number) => cps / 4.227
+      toSI: (cps: number) => cps / 4.22675,
+      fromSI: (cps: number) => cps * 4.22675
     },
     pints: {
-      toSI: (pints: number) => pints * 2.119,
-      fromSI: (pints: number) => pints / 2.119
+      toSI: (pints: number) => pints / 2.11338,
+      fromSI: (pints: number) => pints * 2.11338
     }
   }
 }

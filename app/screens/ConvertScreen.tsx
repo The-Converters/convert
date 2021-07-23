@@ -45,7 +45,7 @@ const ConvertScreen: React.FC = () => {
   useEffect(()=>{
     if(!input) setOutput('')
     if(input && convertFrom && convertTo) setOutput(convert(conversion, convertFrom, convertTo, input))
-    if(convertFrom === convertTo) setOutput(input)
+    // if(convertFrom === convertTo) setOutput(input)
     console.log(convertFrom, convertTo)
   },[input, convertFrom, convertTo])
 
