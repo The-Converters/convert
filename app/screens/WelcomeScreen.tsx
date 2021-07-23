@@ -23,7 +23,7 @@ const WelcomeScreen = () => {
         <TouchableOpacity onPress = {()=>history.push('/convert')}><Text>Do Something</Text></TouchableOpacity>
       </View>
       <View style={styles.keypadOuter} >
-        <Keypad keys={keys} handleTouch={handleTouch} />
+        <Keypad keys={keys} handleTouch={handleTouch} forHomeScreen/>
       </View>
     </View>
   )

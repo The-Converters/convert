@@ -10,15 +10,16 @@ import {
 interface Props {
   keys: string[],
   handleTouch: (key: string) => void
+  forHomeScreen?: boolean
 }
 
-const Keypad: React.FC<Props> = ({keys, handleTouch}) => {
+const Keypad: React.FC<Props> = ({keys, handleTouch, forHomeScreen}) => {
   const keyTouchElements = keys.map((key, index) => (
     <TouchableOpacity
           key={index} 
             style={styles.btnOuter} 
             onPress={()=>handleTouch(key)}>
-              <Text style={styles.btn}>{key}</Text>
+              <Text style={forHomeScreen ? [styles.btn, styles.btnHome] : styles.btn}>{key}</Text>
           </TouchableOpacity>
   ));
   return (
@@ -67,6 +68,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     display: 'flex',
     alignSelf: 'center'    
+  },
+  btnHome: {
+    fontSize: 15
   }
 })
 export default Keypad
