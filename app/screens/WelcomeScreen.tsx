@@ -18,9 +18,8 @@ const WelcomeScreen = () => {
 
   return (
     <View>
-      <View style={styles.top}>
-        <Text>WTF</Text>
-        <TouchableOpacity onPress = {()=>history.push('/convert')}><Text>Do Something</Text></TouchableOpacity>
+      <View style={styles.top} >
+        <Text style={styles.nameText} >ConverTron 5000</Text>
       </View>
       <View style={styles.keypadOuter} >
         <Keypad keys={keys} handleTouch={handleTouch} forHomeScreen/>
@@ -31,12 +30,18 @@ const WelcomeScreen = () => {
 
 const styles = StyleSheet.create({
   top: {
-    flex: 1
+    flex: 1,
+    padding: '20%'
+  },
+  nameText: {
+    alignSelf: 'center',
+    fontSize: 20
   },
   keypadOuter: {
-    flex: 1.5,
+    flex: 1,
     width: '100%',
-    alignSelf: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
     marginTop: 40
    },
 })
