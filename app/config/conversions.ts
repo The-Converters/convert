@@ -29,7 +29,7 @@ export const units: Units = {
   },
   distance: {
     meters: {
-      toSI: (meters: number)=> meters,
+      toSI: (meters: number) => meters,
       fromSI: (meters: number) => meters
     },
     miles:{
@@ -63,5 +63,27 @@ export const units: Units = {
       fromSI: (lbs: number) => lbs * 2.20462
     }
 
+  },
+  volume: {
+    liters: {
+      toSI: (l: number) => l,
+      fromSI: (l: number) => l
+    },
+    gallons: {
+      toSI: (gals: number) => gals * 3.78541,
+      fromSI: (gals: number) => gals / 3.78541
+    },
+    quarts: {
+      toSI: (qts: number) => qts * 1.057,
+      fromSI: (qts: number) => qts / 1.057
+    },
+    cups: {
+      toSI: (cps: number) => cps * 4.227,
+      fromSI: (cps: number) => cps / 4.227
+    },
+    pints: {
+      toSI: (pints: number) => pints * 2.119,
+      fromSI: (pints: number) => pints / 2.119
+    }
   }
 }

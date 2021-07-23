@@ -44,7 +44,7 @@ const ConvertScreen: React.FC = () => {
 
   useEffect(()=>{
     if(!input) setOutput('')
-    if(input) setOutput(convert(conversion, convertFrom, convertTo, input))
+    if(input && convertFrom && convertTo) setOutput(convert(conversion, convertFrom, convertTo, input))
     if(convertFrom === convertTo) setOutput(input)
     console.log(convertFrom, convertTo)
   },[input, convertFrom, convertTo])
@@ -58,10 +58,14 @@ const ConvertScreen: React.FC = () => {
       <View style={styles.input}>
         <Text style={styles.inputText} >{input}</Text>
         <TouchableOpacity 
-          onPress={() => setShowFromModal(true)} 
+          onPress={() => setShowFromModal(true)}
+          style={styles.modalOpenOuter} 
         >
           <Text style={styles.modalOpen}>▽</Text>
         </TouchableOpacity>
+        <Text style={styles.selection}>
+          {convertFrom ? convertFrom : 'select'}
+        </Text>
       </View>
     {showFromModal &&
       <Modal 
@@ -79,12 +83,16 @@ const ConvertScreen: React.FC = () => {
       </Modal>
     }
       <View style={styles.input} >
-        <Text style={styles.inputText} >{output}</Text>
+        <Text style={styles.inputText}>{convertTo ? output : null}</Text>
         <TouchableOpacity 
-          onPress={() => setShowToModal(true)} 
+          onPress={() => setShowToModal(true)}
+          style={styles.modalOpenOuter} 
         >
           <Text style={styles.modalOpen}>▽</Text>
         </TouchableOpacity>
+        <Text style={styles.selection}>
+          {convertTo ? convertTo : 'select'}
+        </Text>
       </View>
     {showToModal &&
       <Modal 
@@ -137,8 +145,20 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 50, 
   },
+  selection: {
+    position: 'absolute',
+    top: '72%',
+    right: '5%',
+    fontSize: 18
+  },
+  modalOpenOuter: {
+    width: '20%',
+    height: '50%'
+
+  },
   modalOpen: {
-    fontSize: 20
+    fontSize: 30,
+    alignSelf: 'center'
   },
   keypadOuter: {
    flex: 1.5,
