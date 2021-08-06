@@ -16,11 +16,22 @@ interface Props {
 const Keypad: React.FC<Props> = ({keys, handleTouch, forHomeScreen}) => {
   const keyTouchElements = keys.map((key, index) => (
     <TouchableOpacity
-          key={index} 
-            style={styles.btnOuter} 
-            onPress={()=>handleTouch(key)}>
-              <Text style={forHomeScreen ? [styles.btn, styles.btnHome] : styles.btn}>{key}</Text>
-          </TouchableOpacity>
+      key={index} 
+      style={[
+        styles.btnOuter, 
+        ((index + 1) % 4 === 0) && !forHomeScreen && styles.rightColumnOuter
+      ]}
+      onPress={()=>handleTouch(key)}>
+      <Text 
+        style={[
+          styles.btn, 
+          forHomeScreen && styles.btnHome, 
+          ((index + 1) % 4 === 0) && styles.rightColumn
+        ]}
+      >
+        {key}
+      </Text>
+    </TouchableOpacity>
   ));
   return (
     <SafeAreaView>
@@ -63,14 +74,21 @@ const styles = StyleSheet.create({
   },
   btn: {
     color: '#FFFFFF',
-    backgroundColor: '#1a66b5ff',
+    
     fontWeight: 'bold',
     fontSize: 24,
     display: 'flex',
     alignSelf: 'center'    
   },
+  rightColumn: {
+    color: '#FFFFFF',
+  },
+  rightColumnOuter: {
+    backgroundColor: "dodgerblue",
+    color: '#1a66b5ff', 
+  },
   btnHome: {
-    fontSize: 15
+    fontSize: 15,
   }
 })
 export default Keypad

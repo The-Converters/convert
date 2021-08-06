@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { useHistory, useParams } from 'react-router-native'
 import Keypad from '../components/Keypad'
 import OptionsList from '../components/OptionsList';
@@ -45,15 +45,12 @@ const ConvertScreen: React.FC = () => {
   useEffect(()=>{
     if(!input) setOutput('')
     if(input && convertFrom && convertTo) setOutput(convert(conversion, convertFrom, convertTo, input))
-    // if(convertFrom === convertTo) setOutput(input)
-    console.log(convertFrom, convertTo)
   },[input, convertFrom, convertTo])
 
   const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
 
-  
   return (
-    <SafeAreaView>
+    <View>
     <View style={styles.container} >
       <View style={styles.input}>
         <Text style={styles.inputText} >{input}</Text>
@@ -117,7 +114,7 @@ const ConvertScreen: React.FC = () => {
         handleTouch ={handleTouch }/>
       </View>
     </View>
-    </SafeAreaView> 
+    </View> 
   )
 }
 

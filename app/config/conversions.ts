@@ -85,5 +85,5 @@ export const units: Units = {
       toSI: (pints: number) => pints / 2.11338,
       fromSI: (pints: number) => pints * 2.11338
     }
-  }
+  },
 }
