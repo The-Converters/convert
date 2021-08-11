@@ -8,7 +8,7 @@ interface Colors {
 }
 
 
-export default {
+export default<Colors> {
   //temp blue
   //mass red
   //distance orange

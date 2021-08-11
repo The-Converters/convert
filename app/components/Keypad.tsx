@@ -15,16 +15,15 @@ interface Props {
   forHomeScreen?: boolean
 }
 
-
 const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHomeScreen}) => {
   console.log(conversion)
   const keyTouchElements: React.ReactElement[] = keys.map((key, index) => (
     <TouchableOpacity
       key={index} 
       style={[
-        {backgroundColor: colors[conversion as keyof object].regular},
+        {backgroundColor: colors[conversion].regular},
         styles.btnOuter,
-        ((index + 1) % 4 === 0) && !forHomeScreen && {backgroundColor: colors[conversion as keyof object].light}
+        ((index + 1) % 4 === 0) && !forHomeScreen && {backgroundColor: colors[conversion].light}
       ]}
       onPress={()=>handleTouch(key)}>
       <Text 
@@ -88,17 +87,8 @@ const styles = StyleSheet.create({
   rightColumn: {
     color: '#FFFFFF',
   },
-  rightColumnOutermass: {
-     
-  },
   btnHome: {
     fontSize: 15,
   },
-  temp: {
-   
-  },
-  mass: {
-    
-  }
 })
 export default Keypad
