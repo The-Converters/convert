@@ -22,7 +22,10 @@ const WelcomeScreen = () => {
         <Text style={styles.nameText} >ConverTron 5000</Text>
       </View>
       <View style={styles.keypadOuter} >
-        <Keypad keys={keys} handleTouch={handleTouch} forHomeScreen/>
+        <Keypad
+          conversion={'temp'} 
+          keys={keys} 
+          handleTouch={handleTouch} forHomeScreen/>
       </View>
     </View>
   )
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     marginTop: 40
-   },
+   }, 
 })
 
 export default WelcomeScreen

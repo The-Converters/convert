@@ -9,7 +9,7 @@ import { units } from '../config/conversions';
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
   const [input, setInput] = useState<string>('')
-  const [output, setOutput] = useState<string>('')
+  const [output, setOutput] = useState<string>('')  
   const [showFromModal, setShowFromModal] = useState<boolean>(false)
   const [showToModal, setShowToModal] = useState<boolean>(false)
   const [convertFrom, setConvertFrom] = useState<string>('')
@@ -109,7 +109,8 @@ const ConvertScreen: React.FC = () => {
     }
 
       <View style={styles.keypadOuter} >
-        <Keypad 
+        <Keypad
+        conversion={conversion} 
         keys = {keys}
         handleTouch ={handleTouch }/>
       </View>
