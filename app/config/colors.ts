@@ -7,7 +7,6 @@ interface Colors {
   [key: string]: Color
 }
 
-
 export default<Colors> {
   //temp blue
   //mass red
@@ -37,6 +36,10 @@ export default<Colors> {
   yellow: {
     regular: '#',
     light: '#'
+  },
+  grey: {
+    regular: '#343d52',
+    light: '#AFAFAF'
   }
 
 }

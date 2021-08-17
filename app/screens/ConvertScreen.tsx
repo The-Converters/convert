@@ -5,6 +5,7 @@ import Keypad from '../components/Keypad'
 import OptionsList from '../components/OptionsList';
 import { convert } from '../utils/conversion';
 import { units } from '../config/conversions';
+import colors from '../config/colors';
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
@@ -52,15 +53,15 @@ const ConvertScreen: React.FC = () => {
   return (
     <View>
     <View style={styles.container} >
-      <View style={styles.input}>
-        <Text style={styles.inputText} >{input}</Text>
+      <View style={[{borderBottomColor: colors.grey.light}, styles.input]}>
+        <Text style={[{color: colors.grey.light}, styles.inputText]} >{input}</Text>
         <TouchableOpacity 
           onPress={() => setShowFromModal(true)}
           style={styles.modalOpenOuter} 
         >
-          <Text style={styles.modalOpen}>▽</Text>
+          <Text style={[{color: colors.grey.light}, styles.modalOpen]}>▽</Text>
         </TouchableOpacity>
-        <Text style={styles.selection}>
+        <Text style={[{color: colors.grey.light}, styles.selection]}>
           {convertFrom ? convertFrom : 'select'}
         </Text>
       </View>
@@ -68,6 +69,7 @@ const ConvertScreen: React.FC = () => {
       <Modal 
         animationType={'fade'} 
         transparent={true}
+
       >
         <OptionsList 
           options={optionsArr}
@@ -79,15 +81,15 @@ const ConvertScreen: React.FC = () => {
         />
       </Modal>
     }
-      <View style={styles.input} >
-        <Text style={styles.inputText}>{convertTo ? output : null}</Text>
+      <View style={[{borderBottomColor: colors[conversion].light}, styles.input]} >
+        <Text style={[{color: colors[conversion].light}, styles.inputText]}>{convertTo ? output : null}</Text>
         <TouchableOpacity 
           onPress={() => setShowToModal(true)}
           style={styles.modalOpenOuter} 
         >
-          <Text style={styles.modalOpen}>▽</Text>
+          <Text style={[{color: colors[conversion].light}, styles.modalOpen]}>▽</Text>
         </TouchableOpacity>
-        <Text style={styles.selection}>
+        <Text style={[{color: colors[conversion].light}, styles.selection]}>
           {convertTo ? convertTo : 'select'}
         </Text>
       </View>
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   input: {
     flex: .5,
@@ -133,14 +135,12 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: 300,
     borderBottomWidth: 3,
-    borderBottomColor: 'black',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around'
   },
   inputText: {
     width: '100%',
-    color: 'black',
     fontSize: 50, 
   },
   selection: {

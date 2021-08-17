@@ -6,6 +6,7 @@ import {
   StyleSheet, 
   TouchableOpacity 
 } from 'react-native';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
 import colors from '../config/colors';
 
 interface Props {
@@ -16,25 +17,30 @@ interface Props {
 }
 
 const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHomeScreen}) => {
-  console.log(conversion)
   const keyTouchElements: React.ReactElement[] = keys.map((key, index) => (
     <TouchableOpacity
       key={index} 
       style={[
         {backgroundColor: colors[conversion].regular},
+        {borderColor: colors.grey.light},
         styles.btnOuter,
         ((index + 1) % 4 === 0) && !forHomeScreen && {backgroundColor: colors[conversion].light}
       ]}
       onPress={()=>handleTouch(key)}>
-      <Text 
-        style={[
-          styles.btn,
-          forHomeScreen && styles.btnHome, 
-          ((index + 1) % 4 === 0) && styles.rightColumn
-        ]}
-      >
-        {key}
-      </Text>
+      {(index === (keys.length - 1) && !forHomeScreen)
+        ?
+        <Icon name={key} color={'#FFFFFF'} size={36}/>      
+        :
+        <Text 
+          style={[
+            styles.btn,
+            forHomeScreen && styles.btnHome, 
+            ((index + 1) % 4 === 0) && styles.rightColumn
+          ]}
+        >
+          {key}
+        </Text>
+      }
     </TouchableOpacity>
   ));
   return (
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
     height: '25%'
   },
   btnOuter: {
-    borderColor: 'white',
+    // borderColor: 'white',
     borderWidth: 1,
     borderStyle: 'solid',
     width: '25%',
