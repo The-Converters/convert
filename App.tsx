@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import { NativeRouter, Switch, Route } from 'react-router-native';
+import colors from './app/config/colors';
 import ConvertScreen from './app/screens/ConvertScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 
@@ -30,7 +31,7 @@ export default function App()  {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.grey.regular,
     alignItems: 'center',
     justifyContent: 'center',
   },

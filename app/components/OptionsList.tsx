@@ -5,6 +5,7 @@ import {
   View, 
   StyleSheet 
 } from 'react-native'
+import colors from '../config/colors'
 
 interface Props {
   options: string[],
@@ -45,15 +46,15 @@ const styles = StyleSheet.create({
     right: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.grey.light,
     padding: 7,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
+    shadowOpacity: 0.45,
+    shadowRadius: 5,
     elevation: 5,
     borderColor: 'darkgrey',
     borderWidth: 1,

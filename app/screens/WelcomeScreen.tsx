@@ -1,7 +1,9 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import { Icon } from 'react-native-elements'
 import { useHistory } from 'react-router-native'
 import Keypad from '../components/Keypad'
+import colors from '../config/colors'
 import { units } from '../config/conversions'
 
 
@@ -10,9 +12,10 @@ const WelcomeScreen = () => {
   const history = useHistory()
 
   const keys = Object.keys(units)
+  
+  console.log(keys); 
 
   const handleTouch = (keyPress: string) => {
-    console.log(keyPress)
     history.push(`/convert/${keyPress}`)
   }
 
@@ -20,6 +23,7 @@ const WelcomeScreen = () => {
     <View>
       <View style={styles.top} >
         <Text style={styles.nameText} >ConverTron 5000</Text>
+        <Icon  name={'compare-arrows'} size={120} color={colors.grey.light}/>
       </View>
       <View style={styles.keypadOuter} >
         <Keypad
@@ -38,7 +42,10 @@ const styles = StyleSheet.create({
   },
   nameText: {
     alignSelf: 'center',
-    fontSize: 20
+    fontSize: 30,
+    textAlign: 'center',
+    marginBottom: '10%',
+    color: colors.grey.light,
   },
   keypadOuter: {
     flex: 1,
