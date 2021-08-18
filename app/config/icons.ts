@@ -7,5 +7,8 @@ export default<Icon>{
   distance: 'ruler',
   mass: 'balance-scale',
   volume: 'flask',
+  menu: 'bars',
+  back: 'angle-double-left',
+  clr: 'times-circle',
   home: 'home'
 }

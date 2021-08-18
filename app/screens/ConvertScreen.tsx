@@ -48,7 +48,7 @@ const ConvertScreen: React.FC = () => {
     if(input && convertFrom && convertTo) setOutput(convert(conversion, convertFrom, convertTo, input))
   },[input, convertFrom, convertTo])
 
-  const keys = ["7", "8", "9", "menu", "4", "5", "6", "<", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+  const keys = ["7", "8", "9", "menu", "4", "5", "6", "back", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
 
   return (
     <View>

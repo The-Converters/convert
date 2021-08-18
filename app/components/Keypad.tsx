@@ -28,7 +28,7 @@ const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHom
         ((index + 1) % 4 === 0) && !forHomeScreen && {backgroundColor: colors[conversion].light}
       ]}
       onPress={()=>handleTouch(key)}>
-      {(index === (keys.length - 1) && !forHomeScreen || forHomeScreen)
+      {((index + 1) % 4 === 0 && !forHomeScreen || forHomeScreen)
         ?
         <Icon 
           name={icons[key]} 
