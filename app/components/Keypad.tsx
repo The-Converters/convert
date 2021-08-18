@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import colors from '../config/colors';
+import icons from '../config/icons';
 
 interface Props {
   conversion?: string,
@@ -27,9 +28,14 @@ const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHom
         ((index + 1) % 4 === 0) && !forHomeScreen && {backgroundColor: colors[conversion].light}
       ]}
       onPress={()=>handleTouch(key)}>
-      {(index === (keys.length - 1) && !forHomeScreen)
+      {(index === (keys.length - 1) && !forHomeScreen || forHomeScreen)
         ?
-        <Icon name={key} color={'#FFFFFF'} size={36}/>      
+        <Icon 
+          name={icons[key]} 
+          type={'font-awesome-5'} 
+          color={'#FFFFFF'} 
+          size={30}
+        />      
         :
         <Text 
           style={[

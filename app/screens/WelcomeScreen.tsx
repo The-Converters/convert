@@ -12,6 +12,8 @@ const WelcomeScreen = () => {
   const history = useHistory()
 
   const keys = Object.keys(units)
+  
+  console.log(keys); 
 
   const handleTouch = (keyPress: string) => {
     history.push(`/convert/${keyPress}`)
