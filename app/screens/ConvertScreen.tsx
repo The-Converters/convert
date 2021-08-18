@@ -9,8 +9,8 @@ import colors from '../config/colors';
 
 const ConvertScreen: React.FC = () => {
   const history = useHistory()
-  const [input, setInput] = useState<string>('')
-  const [output, setOutput] = useState<string>('')  
+  const [input, setInput] = useState<string>('0')
+  const [output, setOutput] = useState<string>('0')  
   const [showFromModal, setShowFromModal] = useState<boolean>(false)
   const [showToModal, setShowToModal] = useState<boolean>(false)
   const [convertFrom, setConvertFrom] = useState<string>('')
@@ -31,11 +31,16 @@ const ConvertScreen: React.FC = () => {
       setInput(input.slice(0,-1))
         break;
     case '+/-':
-      setInput(input[0] === '-' ? input.slice(1) : '-'+input)
+      setInput(input[0] === '-'  ? input.slice(1) : '-'+input)
         break;
     case 'clr':
-      setInput('')
+      setInput('0')
       break;
+    case '.':
+        setInput(input.includes('.')
+          ? input
+          : input+keyPress)
+        break;
     default:
       if(input=== '0') setInput(keyPress)
       else if(input === '-0') setInput('-' + keyPress)
@@ -44,7 +49,6 @@ const ConvertScreen: React.FC = () => {
   }
 
   useEffect(()=>{
-    if(!input) setOutput('')
     if(input && convertFrom && convertTo) setOutput(convert(conversion, convertFrom, convertTo, input))
   },[input, convertFrom, convertTo])
 
@@ -136,12 +140,13 @@ const styles = StyleSheet.create({
     width: 300,
     borderBottomWidth: 3,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'space-around'
   },
   inputText: {
     width: '100%',
     fontSize: 50, 
+    marginBottom: 10
   },
   selection: {
     position: 'absolute',
@@ -151,18 +156,18 @@ const styles = StyleSheet.create({
   },
   modalOpenOuter: {
     width: '20%',
-    height: '50%'
-
+    height: '50%',
+    marginBottom: 10
   },
   modalOpen: {
     fontSize: 30,
     alignSelf: 'center'
   },
   keypadOuter: {
-   flex: 1.5,
-   width: '100%',
-   alignSelf: 'center',
-   marginTop: 40
+    flex: 1.5,
+    width: '100%',
+    alignSelf: 'center',
+    marginTop: 40
   },
 })
 
