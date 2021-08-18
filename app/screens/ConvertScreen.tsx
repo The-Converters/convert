@@ -27,7 +27,7 @@ const ConvertScreen: React.FC = () => {
     case 'home':
         history.push('/')
         break;
-    case '<' :
+    case 'back' :
       setInput(input.slice(0,-1))
         break;
     case '+/-':
