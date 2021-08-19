@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   selection: {
     position: 'absolute',
-    top: '72%',
+    top: '105%',
     right: '5%',
     fontSize: 18
   },
