@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     right: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.grey.light,
+    backgroundColor: colors.background.light,
     padding: 7,
     shadowColor: "#000",
     shadowOffset: {

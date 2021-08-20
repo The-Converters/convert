@@ -14,16 +14,17 @@ interface Props {
   conversion?: string,
   keys: string[],
   handleTouch: (key: string) => void
-  forHomeScreen?: boolean
+  forHomeScreen?: boolean,
+  mode: 'light' | 'dark'
 }
 
-const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHomeScreen}) => {
+const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHomeScreen, mode}) => {
   const keyTouchElements: React.ReactElement[] = keys.map((key, index) => (
     <TouchableOpacity
       key={index} 
       style={[
-        {backgroundColor: colors[conversion].regular},
-        {borderColor: colors.grey.light},
+        {backgroundColor: colors[conversion].dark},
+        {borderColor: ((index + 1) % 4 === 0) && !forHomeScreen ? colors[conversion].dark : colors[conversion].light},
         styles.btnOuter,
         ((index + 1) % 4 === 0) && !forHomeScreen && {backgroundColor: colors[conversion].light}
       ]}
@@ -33,7 +34,8 @@ const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHom
         <Icon 
           name={icons[key]} 
           type={'font-awesome-5'} 
-          color={'#FFFFFF'} 
+          solid
+          color={colors.textMode[mode]} 
           size={30}
         />      
         :

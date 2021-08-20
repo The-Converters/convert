@@ -10,5 +10,7 @@ export default<Icon>{
   menu: 'bars',
   back: 'angle-double-left',
   clr: 'times-circle',
-  home: 'home'
+  home: 'home',
+  light: 'moon',
+  dark: 'sun'
 }
