@@ -1,5 +1,5 @@
 interface Color {
-  regular: string,
+  dark: string,
   light: string
 }
 
@@ -14,32 +14,36 @@ export default<Colors> {
   // volume purple
 
   temp: {
-    regular: '#1a66b5',
+    dark: '#1a66b5',
     light: '#1e90ff'
   },
   green: {
-    regular: '#306B34',
+    dark: '#306B34',
     light: '#99C24D'
   },
   distance: {
-    regular: '#FF7D00',
+    dark: '#FF7D00',
     light: '#FF934F'
   },
   volume: {
-    regular: '#610345',
+    dark: '#610345',
     light: '#8F3985'
   },
   mass: {
-    regular: '#A20D28',
+    dark: '#A20D28',
     light: '#EF2D56'
   },
   yellow: {
-    regular: '#',
+    dark: '#',
     light: '#'
   },
-  grey: {
-    regular: '#343d52',
+  background: {
+    dark: '#343d52',
     light: '#AFAFAF'
+  },
+  textMode: {
+    dark: '#AFAFAF',
+    light: '#343d52'
   }
 
 }

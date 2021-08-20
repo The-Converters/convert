@@ -57,15 +57,15 @@ const ConvertScreen: React.FC = () => {
   return (
     <View>
     <View style={styles.container} >
-      <View style={[{borderBottomColor: colors.grey.light}, styles.input]}>
-        <Text style={[{color: colors.grey.light}, styles.inputText]} >{input}</Text>
+      <View style={[{borderBottomColor: colors.background.light}, styles.input]}>
+        <Text style={[{color: colors.background.light}, styles.inputText]} >{input}</Text>
         <TouchableOpacity 
           onPress={() => setShowFromModal(true)}
           style={styles.modalOpenOuter} 
         >
-          <Text style={[{color: colors.grey.light}, styles.modalOpen]}>▽</Text>
+          <Text style={[{color: colors.background.light}, styles.modalOpen]}>▽</Text>
         </TouchableOpacity>
-        <Text style={[{color: colors.grey.light}, styles.selection]}>
+        <Text style={[{color: colors.background.light}, styles.selection]}>
           {convertFrom ? convertFrom : 'select'}
         </Text>
       </View>
@@ -116,6 +116,7 @@ const ConvertScreen: React.FC = () => {
 
       <View style={styles.keypadOuter} >
         <Keypad
+        mode={'dark'}
         conversion={conversion} 
         keys = {keys}
         handleTouch ={handleTouch }/>
