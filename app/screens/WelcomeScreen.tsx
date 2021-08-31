@@ -1,18 +1,21 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet} from 'react-native'
 import { Icon } from 'react-native-elements'
-import { useHistory } from 'react-router-native'
+import { useAsyncStorage } from '@react-native-async-storage/async-storage'
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import Keypad from '../components/Keypad'
 import colors from '../config/colors'
 import { units } from '../config/conversions'
-import { useAsyncStorage } from '@react-native-async-storage/async-storage'
-import { useState } from 'react'
-import { useEffect } from 'react'
 
 type Mode = 'light' | 'dark'
 
-
-const WelcomeScreen = () => {
+type Params = {
+  Welcome: undefined,
+  Convert: {conversion: string, mode: Mode}
+}
+type Props = NativeStackScreenProps<Params, 'Welcome'>
+const WelcomeScreen: React.FC<Props> = ({navigation}) => {
   const { getItem, setItem } = useAsyncStorage('mode')
   const [mode, setMode] = useState<Mode>('dark');
 
@@ -34,19 +37,18 @@ const WelcomeScreen = () => {
     readItemFromStorage();
   },[])
 
-  const history = useHistory()
-
   const keys = [...Object.keys(units), mode || 'dark']
-  
-  console.log(keys); 
 
   const handleTouch = (keyPress: string) => {
     if(keyPress === mode) writeItemToStorage(mode === 'light' ? 'dark' : 'light');
-    else history.push(`/convert/${keyPress}`);
+    else navigation.navigate(`Convert`, {conversion: keyPress, mode: mode});
   }
 
   return (
-    <View style={{backgroundColor: colors.background[mode]}} >
+    <View 
+      style={
+        {backgroundColor: colors.background[mode],
+        flex:1}} >
       <View style={[styles.top]} >
         <Text style={[styles.nameText, {color: colors.textMode[mode]}]} >ConverTron 5000</Text>
         <Icon  name={'compare-arrows'} size={120} color={colors.textMode[mode]}/>
@@ -56,7 +58,8 @@ const WelcomeScreen = () => {
           mode={mode}
           conversion={'temp'} 
           keys={keys} 
-          handleTouch={handleTouch} forHomeScreen/>
+          handleTouch={handleTouch} 
+          forHomeScreen/>
       </View>
     </View>
   )
@@ -72,7 +75,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     marginBottom: '10%',
-    // color: colors.grey.light,
   },
   keypadOuter: {
     flex: 1,
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     marginTop: 40
-   }, 
+  }, 
 })
 
 export default WelcomeScreen
