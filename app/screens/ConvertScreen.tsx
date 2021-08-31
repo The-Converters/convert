@@ -1,31 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import { useHistory, useParams } from 'react-router-native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import Keypad from '../components/Keypad'
 import OptionsList from '../components/OptionsList';
 import { convert } from '../utils/conversion';
 import { units } from '../config/conversions';
 import colors from '../config/colors';
 
-const ConvertScreen: React.FC = () => {
-  const history = useHistory()
+type Mode = 'light' | 'dark'
+type Params = {
+  Welcome: undefined,
+  Convert: {conversion: string, mode: Mode}
+}
+type Props = NativeStackScreenProps<Params, 'Convert'>
+const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
   const [input, setInput] = useState<string>('0')
   const [output, setOutput] = useState<string>('0')  
   const [showFromModal, setShowFromModal] = useState<boolean>(false)
   const [showToModal, setShowToModal] = useState<boolean>(false)
   const [convertFrom, setConvertFrom] = useState<string>('')
   const [convertTo, setConvertTo] = useState<string>('')
-  const { conversion } = useParams<{ conversion: string }>()
-  
+  const { conversion, mode } = route.params
   const optionsArr: string[] = Object.keys(units[conversion])
 
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
     case 'menu':
-      history.push('/')
+      navigation.navigate('Welcome')
       break;
     case 'home':
-        history.push('/')
+        navigation.navigate('Welcome')
         break;
     case 'back' :
       setInput(input.slice(0,-1))
@@ -57,15 +62,15 @@ const ConvertScreen: React.FC = () => {
   return (
     <View>
     <View style={styles.container} >
-      <View style={[{borderBottomColor: colors.background.light}, styles.input]}>
-        <Text style={[{color: colors.background.light}, styles.inputText]} >{input}</Text>
+      <View style={[{borderBottomColor: colors.background[mode]}, styles.input]}>
+        <Text style={[{color: colors.textMode[mode]}, styles.inputText]} >{input}</Text>
         <TouchableOpacity 
           onPress={() => setShowFromModal(true)}
           style={styles.modalOpenOuter} 
         >
-          <Text style={[{color: colors.background.light}, styles.modalOpen]}>▽</Text>
+          <Text style={[{color: colors.textMode[mode]}, styles.modalOpen]}>▽</Text>
         </TouchableOpacity>
-        <Text style={[{color: colors.background.light}, styles.selection]}>
+        <Text style={[{color: colors.textMode[mode]}, styles.selection]}>
           {convertFrom ? convertFrom : 'select'}
         </Text>
       </View>
@@ -116,7 +121,7 @@ const ConvertScreen: React.FC = () => {
 
       <View style={styles.keypadOuter} >
         <Keypad
-        mode={'dark'}
+        mode={mode}
         conversion={conversion} 
         keys = {keys}
         handleTouch ={handleTouch }/>
