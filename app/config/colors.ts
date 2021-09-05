@@ -38,12 +38,12 @@ export default<Colors> {
     light: '#'
   },
   background: {
-    dark: '#343d52',
-    light: '#AFAFAF'
+    dark: '#282f40',
+    light: '#c9d5f2'
   },
   textMode: {
-    dark: '#AFAFAF',
-    light: '#343d52'
+    dark: '#c9d5f2',
+    light: '#282f40'
   }
 
 }

@@ -35,7 +35,7 @@ const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHom
           name={icons[key]} 
           type={'font-awesome-5'} 
           solid
-          color={colors.textMode[mode]} 
+          color={colors.textMode.dark} 
           size={30}
         />      
         :
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   btn: {
-    color: '#FFFFFF',
+    color: colors.textMode.dark,
     
     fontWeight: 'bold',
     fontSize: 24,
