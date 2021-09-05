@@ -22,8 +22,8 @@ export default<Colors> {
     light: '#99C24D'
   },
   distance: {
-    dark: '#FF7D00',
-    light: '#FF934F'
+    dark: '#f56207',
+    light: '#ff883d'
   },
   volume: {
     dark: '#610345',
