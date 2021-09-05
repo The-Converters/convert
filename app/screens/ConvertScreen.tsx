@@ -23,7 +23,7 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
   const [convertTo, setConvertTo] = useState<string>('')
   const { conversion, mode } = route.params
   const optionsArr: string[] = Object.keys(units[conversion])
-
+  
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
     case 'menu':
@@ -61,8 +61,8 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
 
   return (
     <View>
-    <View style={styles.container} >
-      <View style={[{borderBottomColor: colors.background[mode]}, styles.input]}>
+    <View style={[styles.container, {backgroundColor: colors.background[mode]}]} >
+      <View style={[{borderBottomColor: colors.textMode[mode]}, styles.input]}>
         <Text style={[{color: colors.textMode[mode]}, styles.inputText]} >{input}</Text>
         <TouchableOpacity 
           onPress={() => setShowFromModal(true)}
@@ -90,15 +90,15 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
         />
       </Modal>
     }
-      <View style={[{borderBottomColor: colors[conversion].light}, styles.input]} >
+      <View style={[{borderBottomColor: colors.textMode[mode]}, styles.input]} >
         <Text style={[{color: colors[conversion].light}, styles.inputText]}>{convertTo ? output : null}</Text>
         <TouchableOpacity 
           onPress={() => setShowToModal(true)}
           style={styles.modalOpenOuter} 
         >
-          <Text style={[{color: colors[conversion].light}, styles.modalOpen]}>▽</Text>
+          <Text style={[{color: colors.textMode[mode]}, styles.modalOpen]}>▽</Text>
         </TouchableOpacity>
-        <Text style={[{color: colors[conversion].light}, styles.selection]}>
+        <Text style={[{color: colors.textMode[mode]}, styles.selection]}>
           {convertTo ? convertTo : 'select'}
         </Text>
       </View>

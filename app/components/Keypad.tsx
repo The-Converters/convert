@@ -35,15 +35,14 @@ const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHom
           name={icons[key]} 
           type={'font-awesome-5'} 
           solid
-          color={colors.textMode[mode]} 
+          color={colors.textMode.dark} 
           size={30}
         />      
         :
         <Text 
           style={[
             styles.btn,
-            forHomeScreen && styles.btnHome, 
-            ((index + 1) % 4 === 0) && styles.rightColumn
+            forHomeScreen && styles.btnHome,
           ]}
         >
           {key}
@@ -81,7 +80,6 @@ const styles = StyleSheet.create({
     height: '25%'
   },
   btnOuter: {
-    // borderColor: 'white',
     borderWidth: 1,
     borderStyle: 'solid',
     width: '25%',
@@ -91,15 +89,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   btn: {
-    color: '#FFFFFF',
-    
+    color: colors.textMode.dark,
     fontWeight: 'bold',
     fontSize: 24,
     display: 'flex',
     alignSelf: 'center'    
-  },
-  rightColumn: {
-    color: '#FFFFFF',
   },
   btnHome: {
     fontSize: 15,
