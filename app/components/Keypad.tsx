@@ -53,7 +53,7 @@ const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHom
   return (
     <SafeAreaView>
       
-      <View style={styles.keypad}>
+      <View style={[styles.keypad, { backgroundColor: colors[conversion].dark }]}>
         <View style={styles.row}>
             
         {keyTouchElements}
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
-    backgroundColor: '#1a66b5',
+    
   },
   row: {
     flexWrap: "wrap",

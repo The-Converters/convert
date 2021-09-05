@@ -30,22 +30,22 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
       navigation.navigate('Welcome')
       break;
     case 'home':
-        navigation.navigate('Welcome')
-        break;
-    case 'back' :
-      setInput(input.slice(0,-1))
-        break;
+      navigation.navigate('Welcome')
+      break;
+    case 'back':
+      setInput((input[0] === '-' && input.length === 2) ? '0' : input.slice(0,-1))
+      break;
     case '+/-':
       setInput(input[0] === '-'  ? input.slice(1) : '-'+input)
-        break;
+      break;
     case 'clr':
       setInput('0')
       break;
     case '.':
-        setInput(input.includes('.')
-          ? input
-          : input+keyPress)
-        break;
+      setInput(input.includes('.')
+        ? input
+        : input+keyPress)
+      break;
     default:
       if(input=== '0') setInput(keyPress)
       else if(input === '-0') setInput('-' + keyPress)
