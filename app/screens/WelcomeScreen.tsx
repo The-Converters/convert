@@ -41,6 +41,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}) => {
 
   const handleTouch = (keyPress: string) => {
     if(keyPress === mode) writeItemToStorage(mode === 'light' ? 'dark' : 'light');
+    else if(keyPress === 'about') console.log('help!')
     else navigation.navigate(`Convert`, {conversion: keyPress, mode: mode});
   }
 
