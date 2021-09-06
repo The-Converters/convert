@@ -12,5 +12,6 @@ export default<Icon>{
   clr: 'times-circle',
   home: 'home',
   light: 'moon',
-  dark: 'sun'
+  dark: 'sun',
+  about: 'info-circle'
 }
