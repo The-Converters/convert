@@ -12,7 +12,8 @@ type Mode = 'light' | 'dark'
 
 type Params = {
   Welcome: undefined,
-  Convert: {conversion: string, mode: Mode}
+  Convert: {conversion: string, mode: Mode},
+  About: {mode: Mode}
 }
 type Props = NativeStackScreenProps<Params, 'Welcome'>
 const WelcomeScreen: React.FC<Props> = ({navigation}) => {
@@ -41,7 +42,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}) => {
 
   const handleTouch = (keyPress: string) => {
     if(keyPress === mode) writeItemToStorage(mode === 'light' ? 'dark' : 'light');
-    else if(keyPress === 'about') console.log('help!')
+    else if(keyPress === 'about') navigation.navigate(`About`, {mode: mode})
     else navigation.navigate(`Convert`, {conversion: keyPress, mode: mode});
   }
 
