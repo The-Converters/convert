@@ -3,13 +3,8 @@ import { StyleSheet, Text, TouchableOpacity, View, Image, Linking } from 'react-
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import colors from '../config/colors'
 import { Icon } from 'react-native-elements'
-import { Link } from '@react-navigation/native'
+import { Params } from '../../types'
 
-type Mode = 'light' | 'dark'
-type Params = {
-    Welcome: undefined,
-    About: {mode: Mode}
-}
 type Props = NativeStackScreenProps<Params, 'About'>
 const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
     const { mode } = route.params
@@ -21,36 +16,51 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
         <View>
         <View style={[styles.container, {backgroundColor: colors.background[mode]}]}>
 
-        
-            <Text>Lets talk about us</Text>
-            
-            <Icon
-                name={'github'}
-                type={'font-awesome-5'}
-                color={colors.textMode.dark}
-                size={30}
-                onPress={() => Linking.openURL('https://github.com/The-Converters/convert')}
-            />
+            <View style={styles.nav}>
+                <Icon
+                    name={'github'}
+                    type={'font-awesome-5'}
+                    color={colors.textMode[mode]}
+                    size={30}
+                    onPress={() => Linking.openURL('https://github.com/The-Converters/convert')}
+                />
+            </View>
      
-            <Image 
-                source={require('../../assets/gmall.png')}
-                style={styles.mugshot}/>
-            <Image source={require('../../assets/jerud.jpeg')}
+            <View style={styles.devBox}>
+                <View>
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>Greg</Text>
+                    <Text style={{color: colors.textMode[mode]}}>words or a link</Text>
+                </View>
+                <Image 
+                    source={require('../../assets/gmall.png')}
+                    style={styles.mugshot}/>
+            </View>
+            <View style={styles.devBox}>
+                <Image source={require('../../assets/jerud.jpeg')}
                 style={styles.mugshot} />
-            <Image source={require('../../assets/shawn.jpeg')}
-                style={styles.mugshot}/>
-            <TouchableOpacity
-                onPress={handleTouch}>
+                <View >
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>Jerud</Text>
+                    <Text style={{color: colors.textMode[mode]}}>words or a link</Text>
+                </View>
+            </View>
+            <View style={styles.devBox}>
+                <View >
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>Shawn</Text>
+                    <Text style={{color: colors.textMode[mode]}}>words or a link</Text>
+                </View>
+                <Image source={require('../../assets/shawn.jpeg')}
+                    style={styles.mugshot}/>
+            </View>
+            <View style={styles.nav}>
                 <Icon
                     name={'home'}
                     type={'font-awesome-5'}
                     solid
-                    color={colors.textMode.dark}
+                    color={colors.textMode[mode]}
                     size={30}
+                    onPress={handleTouch}
                 />
-            
-                <Text>STUFF</Text>
-            </TouchableOpacity>
+            </View>
             </View>
         </View>
     )
@@ -66,12 +76,24 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
       },
+    devBox: {
+        width: '85%',
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    name: {
+        fontSize: 30
+    },
     mugshot: {
-        maxWidth: '52%',
-        height: '25%',
+        height: '100%',
+        maxWidth: '50%',
         borderRadius: 100,
+    },
+    nav: {
+        flex: .5
     }
 })
 
 export default AboutScreen
-

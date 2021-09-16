@@ -7,14 +7,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Keypad from '../components/Keypad'
 import colors from '../config/colors'
 import { units } from '../config/conversions'
+import { Mode, Params } from '../../types'
 
-type Mode = 'light' | 'dark'
-
-type Params = {
-  Welcome: undefined,
-  Convert: {conversion: string, mode: Mode},
-  About: {mode: Mode}
-}
 type Props = NativeStackScreenProps<Params, 'Welcome'>
 const WelcomeScreen: React.FC<Props> = ({navigation}) => {
   const { getItem, setItem } = useAsyncStorage('mode')
