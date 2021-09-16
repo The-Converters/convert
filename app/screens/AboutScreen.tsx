@@ -3,13 +3,8 @@ import { StyleSheet, Text, TouchableOpacity, View, Image, Linking } from 'react-
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import colors from '../config/colors'
 import { Icon } from 'react-native-elements'
-import { Link } from '@react-navigation/native'
+import { Params } from '../../types'
 
-type Mode = 'light' | 'dark'
-type Params = {
-    Welcome: undefined,
-    About: {mode: Mode}
-}
 type Props = NativeStackScreenProps<Params, 'About'>
 const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
     const { mode } = route.params
@@ -74,4 +69,3 @@ const styles = StyleSheet.create({
 })
 
 export default AboutScreen
-

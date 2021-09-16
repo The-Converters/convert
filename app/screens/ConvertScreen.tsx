@@ -7,12 +7,8 @@ import OptionsList from '../components/OptionsList';
 import { convert } from '../utils/conversion';
 import { units } from '../config/conversions';
 import colors from '../config/colors';
+import { Params } from '../../types';
 
-type Mode = 'light' | 'dark'
-type Params = {
-  Welcome: undefined,
-  Convert: {conversion: string, mode: Mode}
-}
 type Props = NativeStackScreenProps<Params, 'Convert'>
 const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
   const [input, setInput] = useState<string>('0')
@@ -26,8 +22,8 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
   
   const handleTouch = (keyPress: string): void => {
   switch(keyPress) {
-    case 'menu':
-      navigation.navigate('Welcome')
+    case 'about':
+      navigation.navigate(`About`, {mode: mode})
       break;
     case 'home':
       navigation.navigate('Welcome')
@@ -57,7 +53,7 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
     if(input && convertFrom && convertTo) setOutput(convert(conversion, convertFrom, convertTo, input))
   },[input, convertFrom, convertTo])
 
-  const keys = ["7", "8", "9", "menu", "4", "5", "6", "back", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+  const keys = ["7", "8", "9", "about", "4", "5", "6", "back", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
 
   return (
     <View>
