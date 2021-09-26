@@ -12,7 +12,6 @@ export const convert = (
   value: string
 ): string => {
   const places: number = multiplier(value);
-  console.log(`Places is now ${places}`);
   const SIUnits = units[typeOfConversion][fromUnits].toSI(Number(value));
   return (
     Math.round(units[typeOfConversion][toUnits].fromSI(SIUnits) * places) /
