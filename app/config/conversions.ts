@@ -84,6 +84,14 @@ export const units: Units = {
     pints: {
       toSI: (pints: number) => pints / 2.11338,
       fromSI: (pints: number) => pints * 2.11338
+    },
+    tablespoons: {
+      toSI: (tbls: number) => tbls / 67.628045,
+      fromSI: (tbls: number) => tbls * 67.628045
+    },
+    teaspoons: {
+      toSI: (tsp: number) => tsp / 202.88413621,
+      fromSI: (tsp: number) => tsp * 202.88413621
     }
   },
 }
