@@ -15,52 +15,54 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
     return (
         <View>
         <View style={[styles.container, {backgroundColor: colors.background[mode]}]}>
+            <View style={styles.controlBox}>
+                <TouchableOpacity
+                    onPress={handleTouch}>
+                    <Icon
+                        name={'home'}
+                        type={'font-awesome-5'}
+                        solid
+                        color={colors.textMode.dark}
+                        size={42}
+                    />
+                </TouchableOpacity>       
+                <Text style={{color: colors.textMode[mode], fontSize: 20}}>
+                    Team Convertron
+                </Text>            
 
-            <View style={styles.nav}>
                 <Icon
                     name={'github'}
                     type={'font-awesome-5'}
-                    color={colors.textMode[mode]}
-                    size={30}
+                    color={colors.textMode.dark}
+                    size={44}
                     onPress={() => Linking.openURL('https://github.com/The-Converters/convert')}
                 />
-            </View>
-     
-            <View style={styles.devBox}>
-                <View>
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>Greg</Text>
-                    <Text style={{color: colors.textMode[mode]}}>words or a link</Text>
                 </View>
-                <Image 
-                    source={require('../../assets/gmall.png')}
-                    style={styles.mugshot}/>
-            </View>
-            <View style={styles.devBox}>
-                <Image source={require('../../assets/jerud.jpeg')}
-                style={styles.mugshot} />
-                <View >
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>Jerud</Text>
-                    <Text style={{color: colors.textMode[mode]}}>words or a link</Text>
+                <View style={styles.devWrapper}>
+                    <Image 
+                        source={require('../../assets/gmall.png')}
+                        style={styles.mugshot}
+                    />
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                        Greg Mall
+                    </Text>
                 </View>
-            </View>
-            <View style={styles.devBox}>
-                <View >
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>Shawn</Text>
-                    <Text style={{color: colors.textMode[mode]}}>words or a link</Text>
+                <View style={styles.devWrapper}>
+                    <Image source={require('../../assets/jerud.jpeg')}
+                        style={styles.mugshot} 
+                    />
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                        Jerud Moyer
+                    </Text>
                 </View>
-                <Image source={require('../../assets/shawn.jpeg')}
-                    style={styles.mugshot}/>
-            </View>
-            <View style={styles.nav}>
-                <Icon
-                    name={'home'}
-                    type={'font-awesome-5'}
-                    solid
-                    color={colors.textMode[mode]}
-                    size={30}
-                    onPress={handleTouch}
-                />
-            </View>
+                <View style={styles.devWrapper}>
+                    <Image source={require('../../assets/shawn.jpeg')}
+                        style={styles.mugshot}
+                    />
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                        Shawn Carpenter
+                    </Text>
+                </View>
             </View>
         </View>
     )
@@ -71,29 +73,36 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
 const styles = StyleSheet.create({
     container: {
         position: 'relative',
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
         width: '100%',
         height: '100%',
       },
-    devBox: {
-        width: '85%',
+    controlBox: {
+        width: '100%',
         flexDirection: 'row',
-        flex: 1,
+        justifyContent: 'space-around',       
         alignItems: 'center',
-        justifyContent: 'space-between'
+        marginBottom: '10%'
     },
-    name: {
-        fontSize: 30
+    devWrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: '20%',
+        margin: 20,
     },
     mugshot: {
+        maxWidth: '46%',
         height: '100%',
-        maxWidth: '50%',
         borderRadius: 100,
+        marginRight: 25,
+        marginLeft: 10
     },
-    nav: {
-        flex: .5
-    }
+    name: {
+        fontSize: 20,
+    },
+
 })
 
 export default AboutScreen

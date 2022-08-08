@@ -53,76 +53,79 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
     if(input && convertFrom && convertTo) setOutput(convert(conversion, convertFrom, convertTo, input))
   },[input, convertFrom, convertTo])
 
-  const keys = ["7", "8", "9", "about", "4", "5", "6", "back", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
+  const keys: string[] = ["7", "8", "9", "about", "4", "5", "6", "back", "1", "2", "3", "clr", ".", "0", "+/-", "home" ]
 
   return (
     <View>
-    <View style={[styles.container, {backgroundColor: colors.background[mode]}]} >
-      <View style={[{borderBottomColor: colors.textMode[mode]}, styles.input]}>
-        <Text style={[{color: colors.textMode[mode]}, styles.inputText]} >{input}</Text>
-        <TouchableOpacity 
-          onPress={() => setShowFromModal(true)}
-          style={styles.modalOpenOuter} 
-        >
-          <Text style={[{color: colors.textMode[mode]}, styles.modalOpen]}>▽</Text>
-        </TouchableOpacity>
-        <Text style={[{color: colors.textMode[mode]}, styles.selection]}>
-          {convertFrom ? convertFrom : 'select'}
-        </Text>
-      </View>
-    {showFromModal &&
-      <Modal 
-        animationType={'fade'} 
-        transparent={true}
+      <View style={[styles.container, {backgroundColor: colors.background[mode]}]} >
+        <View style={styles.topBox}>
+        <View style={[{borderBottomColor: colors.textMode[mode]}, styles.input]}>
+          <Text style={[{color: colors.textMode[mode]}, styles.inputText]} >{input}</Text>
+          <TouchableOpacity 
+            onPress={() => setShowFromModal(true)}
+            style={styles.modalOpenOuter} 
+          >
+            <Text style={[{color: colors.textMode[mode]}, styles.modalOpen]}>▽</Text>
+          </TouchableOpacity>
+          <Text style={[{color: colors.textMode[mode]}, styles.selection]}>
+            {convertFrom ? convertFrom : 'select'}
+          </Text>
+        </View>
+        {showFromModal &&
+          <Modal 
+            animationType={'fade'} 
+            transparent={true}
 
-      >
-        <OptionsList 
-          options={optionsArr}
-          handler={(option: string) => {
-            setConvertFrom(option)
-            setShowFromModal(false)
-            
-          }}
-        />
-      </Modal>
-    }
-      <View style={[{borderBottomColor: colors.textMode[mode]}, styles.input]} >
-        <Text style={[{color: colors[conversion].light}, styles.inputText]}>{convertTo ? output : null}</Text>
-        <TouchableOpacity 
-          onPress={() => setShowToModal(true)}
-          style={styles.modalOpenOuter} 
-        >
-          <Text style={[{color: colors.textMode[mode]}, styles.modalOpen]}>▽</Text>
-        </TouchableOpacity>
-        <Text style={[{color: colors.textMode[mode]}, styles.selection]}>
-          {convertTo ? convertTo : 'select'}
-        </Text>
-      </View>
-    {showToModal &&
-      <Modal 
-        animationType={'fade'} 
-        transparent={true}
-      >
-        <OptionsList 
-          options={optionsArr}
-          handler={(option: string) => {
-            setConvertTo(option)
-            setShowToModal(false)
-            
-          }}
-          isModalB
-        />
-      </Modal>
-    }
+          >
+            <OptionsList 
+              options={optionsArr}
+              handler={(option: string) => {
+                setConvertFrom(option)
+                setShowFromModal(false)
+                
+              }}
+            />
+          </Modal>
+        }
+        <View style={[{borderBottomColor: colors.textMode[mode]}, styles.input]} >
+          <Text style={[{color: colors[conversion].light}, styles.inputText]}>{convertTo ? output : null}</Text>
+          <TouchableOpacity 
+            onPress={() => setShowToModal(true)}
+            style={styles.modalOpenOuter} 
+          >
+            <Text style={[{color: colors.textMode[mode]}, styles.modalOpen]}>▽</Text>
+          </TouchableOpacity>
+          <Text style={[{color: colors.textMode[mode]}, styles.selection]}>
+            {convertTo ? convertTo : 'select'}
+          </Text>
+        </View>
+        {showToModal &&
+          <Modal 
+            animationType={'fade'} 
+            transparent={true}
+          >
+            <OptionsList 
+              options={optionsArr}
+              handler={(option: string) => {
+                setConvertTo(option)
+                setShowToModal(false)
+                
+              }}
+              isModalB
+            />
+          </Modal>
+        }
 
-      <View style={styles.keypadOuter} >
-        <Keypad
-        mode={mode}
-        conversion={conversion} 
-        keys = {keys}
-        handleTouch ={handleTouch }/>
+        </View>
+
+        <View style={styles.keypadOuter} >
+          <Keypad
+          mode={mode}
+          conversion={conversion} 
+          keys = {keys}
+          handleTouch ={handleTouch }/>
+        </View>
       </View>
-    </View>
     </View> 
   )
 }
@@ -130,16 +133,23 @@ const ConvertScreen: React.FC <Props> = ({route, navigation}) => {
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     width: '100%',
     height: '100%',
+  },
+  topBox: {
+    height: '45%',
+    width: '100%',
+    marginBottom: '5%'
   },
   input: {
     flex: .5,
     alignSelf: 'center',
     paddingLeft: 10,
-    width: 300,
+    paddingBottom: 0,
+    height: '50%',
+    width: '85%',
     borderBottomWidth: 3,
     flexDirection: 'row',
     alignItems: 'flex-end',
@@ -168,6 +178,7 @@ const styles = StyleSheet.create({
   keypadOuter: {
     flex: 1.5,
     width: '100%',
+    maxHeight: '50%',
     alignSelf: 'center',
     marginTop: 40
   },
