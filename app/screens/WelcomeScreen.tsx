@@ -32,7 +32,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}) => {
     readItemFromStorage();
   },[])
 
-  const keys = [...Object.keys(units), mode || 'dark', 'about']
+  const keys: string[] = [...Object.keys(units), mode || 'dark', '', '','about']
 
   const handleTouch = (keyPress: string) => {
     if(keyPress === mode) writeItemToStorage(mode === 'light' ? 'dark' : 'light');
@@ -64,6 +64,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}) => {
 const styles = StyleSheet.create({
   top: {
     flex: 1,
+    marginTop: 30,
     padding: '20%'
   },
   nameText: {
@@ -77,7 +78,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    marginTop: 40
+    marginTop: 40,
+    
   }, 
 })
 

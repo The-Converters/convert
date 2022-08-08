@@ -15,37 +15,53 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
     return (
         <View>
         <View style={[styles.container, {backgroundColor: colors.background[mode]}]}>
-
-        
-            <Text>Lets talk about us</Text>
-            
-            <Icon
-                name={'github'}
-                type={'font-awesome-5'}
-                color={colors.textMode.dark}
-                size={30}
-                onPress={() => Linking.openURL('https://github.com/The-Converters/convert')}
-            />
-     
-            <Image 
-                source={require('../../assets/gmall.png')}
-                style={styles.mugshot}/>
-            <Image source={require('../../assets/jerud.jpeg')}
-                style={styles.mugshot} />
-            <Image source={require('../../assets/shawn.jpeg')}
-                style={styles.mugshot}/>
-            <TouchableOpacity
-                onPress={handleTouch}>
+            <View style={styles.controlBox}>
+                <TouchableOpacity
+                    onPress={handleTouch}>
+                    <Icon
+                        name={'home'}
+                        type={'font-awesome-5'}
+                        solid
+                        color={colors.textMode.dark}
+                        size={42}
+                    />
+                </TouchableOpacity>       
+                <Text style={{color: colors.textMode[mode], fontSize: 20}}>
+                    Team Convertron
+                </Text>            
                 <Icon
-                    name={'home'}
+                    name={'github'}
                     type={'font-awesome-5'}
-                    solid
                     color={colors.textMode.dark}
-                    size={30}
+                    size={44}
+                    onPress={() => Linking.openURL('https://github.com/The-Converters/convert')}
                 />
-            
-                <Text>STUFF</Text>
-            </TouchableOpacity>
+                </View>
+                <View style={styles.devWrapper}>
+                    <Image 
+                        source={require('../../assets/gmall.png')}
+                        style={styles.mugshot}
+                    />
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                        Greg Mall
+                    </Text>
+                </View>
+                <View style={styles.devWrapper}>
+                    <Image source={require('../../assets/jerud.jpeg')}
+                        style={styles.mugshot} 
+                    />
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                        Jerud Moyer
+                    </Text>
+                </View>
+                <View style={styles.devWrapper}>
+                    <Image source={require('../../assets/shawn.jpeg')}
+                        style={styles.mugshot}
+                    />
+                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                        Shawn Carpenter
+                    </Text>
+                </View>
             </View>
         </View>
     )
@@ -56,16 +72,35 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
 const styles = StyleSheet.create({
     container: {
         position: 'relative',
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
         width: '100%',
         height: '100%',
       },
+    controlBox: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',       
+        alignItems: 'center',
+        marginBottom: '10%'
+    },
+    devWrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: '20%',
+        margin: 20,
+    },
     mugshot: {
-        maxWidth: '52%',
-        height: '25%',
+        maxWidth: '46%',
+        height: '100%',
         borderRadius: 100,
-    }
+        marginRight: 25,
+        marginLeft: 10
+    },
+    name: {
+        fontSize: 20,
+    },
 })
 
 export default AboutScreen

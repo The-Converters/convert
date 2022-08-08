@@ -50,6 +50,7 @@ const Keypad: React.FC<Props> = ({conversion = 'temp', keys, handleTouch, forHom
       }
     </TouchableOpacity>
   ));
+
   return (
     <SafeAreaView>
       
