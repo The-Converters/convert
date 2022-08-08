@@ -29,6 +29,7 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
                 <Text style={{color: colors.textMode[mode], fontSize: 20}}>
                     Team Convertron
                 </Text>            
+
                 <Icon
                     name={'github'}
                     type={'font-awesome-5'}
@@ -101,6 +102,7 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 20,
     },
+
 })
 
 export default AboutScreen
