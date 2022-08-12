@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     },
     devWrapper: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         height: '20%',
         margin: 20,
