@@ -43,52 +43,52 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
                         source={require('../../assets/gmall.png')}
                         style={styles.mugshot}
                     />
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
-                        Greg Mall
-                    </Text>
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}
-                        onPress={() => Linking.openURL('https://github.com/gregmall')}>
-                         GitHub
-                    </Text>
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}
-                        onPress={() => Linking.openURL('https://www.linkedin.com/in/greg-mall-3032771b1/')}>
-                         LinkedIn
-                    </Text>
-                 
-                </View>
-                <View style={styles.devWrapper}>
-                    <View style={styles.namePhoto}>
-                        <Image source={require('../../assets/jerud.jpeg')}
-                            style={styles.mugshot} 
-                        />
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
-                            Jerud Moyer
-                        </Text>
-                    </View>
                     <View style={styles.devText}>
-                    
-                        <Text style={[styles.name, {color: colors.textMode[mode]}]}
-                            onPress={() => Linking.openURL('https://github.com/Jerud-Moyer')}>
+                        <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                            Greg Mall
+                        </Text>
+                        <Text style={[styles.link, {color: colors.textMode[mode]}]}
+                            onPress={() => Linking.openURL('https://github.com/gregmall')}>
                             GitHub
                         </Text>
-                        <Text style={[styles.name, {color: colors.textMode[mode]}]}
-                            onPress={() => Linking.openURL('https://jerud-moyer.dev/')}>
-                            Portfolio
+                        <Text style={[styles.link, {color: colors.textMode[mode]}]}
+                            onPress={() => Linking.openURL('https://www.linkedin.com/in/greg-mall-3032771b1/')}>
+                            LinkedIn
                         </Text>
-                 
+                    </View>
+                </View>
+                <View style={styles.devWrapper}>
+                   
+                    <Image source={require('../../assets/jerud.jpeg')}
+                            style={styles.mugshot} 
+                        />
+                    <View style={styles.devText}>
+                        <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                                Jerud Moyer
+                        </Text>
+                        <Text style={[styles.link, {color: colors.textMode[mode]}]}
+                                onPress={() => Linking.openURL('https://github.com/Jerud-Moyer')}>
+                                GitHub
+                        </Text>
+                        <Text style={[styles.link, {color: colors.textMode[mode]}]}
+                                onPress={() => Linking.openURL('https://jerud-moyer.dev/')}>
+                                Portfolio
+                        </Text>
                     </View>
                 </View>
                 <View style={styles.devWrapper}>
                     <Image source={require('../../assets/shawn.jpeg')}
                         style={styles.mugshot}
                     />
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}>
-                        Shawn Carpenter
-                    </Text>
-                    <Text style={[styles.name, {color: colors.textMode[mode]}]}
-                        onPress={() => Linking.openURL('https://github.com/ShawnCarpenter')}>
-                         GitHub
-                    </Text>
+                    <View style={styles.devText}>
+                        <Text style={[styles.name, {color: colors.textMode[mode]}]}>
+                            Shawn Carpenter
+                        </Text>
+                        <Text style={[styles.link, {color: colors.textMode[mode]}]}
+                            onPress={() => Linking.openURL('https://github.com/ShawnCarpenter')}>
+                            GitHub
+                        </Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     },
     devWrapper: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
         height: '20%',
         margin: 20,
@@ -123,20 +123,11 @@ const styles = StyleSheet.create({
     devText:{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        height: '20%',
-        margin: 20,
+        justifyContent: 'center',
+        height: '40%',
+        margin: 0,
     },
-    namePhoto: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        height: '100%',
-        maxWidth: '100%',
-        margin: 20,
-      
-
-    },
+ 
     mugshot: {
         maxWidth: '46%',
         height: '100%',
@@ -147,6 +138,9 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 20,
     },
+    link: {
+        fontSize: 15,
+    }
 
 })
 
