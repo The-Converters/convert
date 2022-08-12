@@ -22,7 +22,7 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
                         name={'home'}
                         type={'font-awesome-5'}
                         solid
-                        color={colors.textMode.dark}
+                        color={colors.textMode[mode]}
                         size={42}
                     />
                 </TouchableOpacity>       
@@ -33,7 +33,7 @@ const AboutScreen: React.FC<Props>  = ({route, navigation}) => {
                 <Icon
                     name={'github'}
                     type={'font-awesome-5'}
-                    color={colors.textMode.dark}
+                    color={colors.textMode[mode]}
                     size={44}
                     onPress={() => Linking.openURL('https://github.com/The-Converters/convert')}
                 />
