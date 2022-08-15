@@ -70,8 +70,12 @@ export const units: Units = {
       fromSI: (kg: number) => kg / 6.35029318,
     },
     grams: {
-      toSI: (g: number) => g / 1000 ,
+      toSI: (g: number) => g / 1000,
       fromSI: (kg: number) => kg * 1000,
+    },
+    tons: {
+      toSI: (t: number) => (t / 2.20462) * 2000,
+      fromSI: (kg: number) => (kg * 2.20462) / 2000,
     },
   },
   volume: {
