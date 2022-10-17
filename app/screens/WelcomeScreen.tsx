@@ -54,6 +54,8 @@ const WelcomeScreen: React.FC<Props> = ({ navigation }) => {
           ConverTron 5000
         </Text>
         <Icon
+          hasTVPreferredFocus={undefined}
+          tvParallaxProperties={undefined}
           name={"compare-arrows"}
           size={120}
           color={colors.textMode[mode]}
